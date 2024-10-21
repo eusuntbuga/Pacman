@@ -11,3 +11,11 @@ PacMan este un proiect ce implementează un joc clasic de tip Pac-Man.
 
  Construire
 Rulați `make` pentru a construi proiectul.
+
+În baza laboratorului 3, am adăugat constructori și operatori noi în clasele existente din proiectul PacMan. 
+Am implementat:
+
+- Constructori: implicit, de copiere și cu parametri.
+- Operatori: de copiere (`=`), de comparație (`==`), de citire și afișare (`<<`, `>>`).
+
+Aceste modificări au fost aplicate în clasele `Board`, `Ghost`, `Pacman`, și `Point`, pentru a permite manipularea și afișarea obiectelor acestor clase într-un mod mai flexibil și corect.
