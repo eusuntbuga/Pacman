@@ -1,12 +1,27 @@
 #include "board.hpp"
+#include <iostream>
 
-Board::Board(int width, int height) : _width(width), _height(height) {}
+// Constructor implicit este deja definit
 
-int Board::GetWidth() const {
-    return _width;
+// Constructor de copiere
+Board::Board(const Board& other) : _width(other._width), _height(other._height) {}
+
+// Operator de copiere
+Board& Board::operator=(const Board& other) {
+    if (this != &other) {
+        _width = other._width;
+        _height = other._height;
+    }
+    return *this;
 }
 
-int Board::GetHeight() const {
-    return _height;
+// Operator de comparație
+bool Board::operator==(const Board& other) const {
+    return _width == other._width && _height == other._height;
 }
 
+// Operator de afișare
+std::ostream& operator<<(std::ostream& os, const Board& board) {
+    os << "Board: Width = " << board._width << ", Height = " << board._height;
+    return os;
+}
