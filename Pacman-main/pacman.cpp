@@ -1,21 +1,25 @@
 #include "pacman.hpp"
+#include <iostream>
 
-Pacman::Pacman() : _lives(3), _position({0, 0}) {}
+// Constructor de copiere
+Pacman::Pacman(const Pacman& other) : _position(other._position), _lives(other._lives) {}
 
-Pacman::Pacman(const Point& position, int lives) : _position(position), _lives(lives) {}
-
-Point Pacman::GetPosition() const {
-    return _position;
+// Operator de copiere
+Pacman& Pacman::operator=(const Pacman& other) {
+    if (this != &other) {
+        _position = other._position;
+        _lives = other._lives;
+    }
+    return *this;
 }
 
-void Pacman::Move(char direction) {
-    // Implementați mișcarea Pac-Man
+// Operator de comparație
+bool Pacman::operator==(const Pacman& other) const {
+    return _position.x == other._position.x && _position.y == other._position.y && _lives == other._lives;
 }
 
-int Pacman::GetLives() const {
-    return _lives;
-}
-
-void Pacman::LoseLife() {
-    if (_lives > 0) _lives--;
+// Operator de afișare
+std::ostream& operator<<(std::ostream& os, const Pacman& pacman) {
+    os << "Pacman: Position = (" << pacman._position.x << ", " << pacman._position.y << "), Lives = " << pacman._lives;
+    return os;
 }
