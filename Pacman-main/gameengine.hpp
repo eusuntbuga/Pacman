@@ -2,11 +2,14 @@
 #include "pacman.hpp"
 #include "ghost.hpp"
 #include "board.hpp"
+#include <memory>
+#include <vector>
 
 class GameEngine {
-   Pacman _pacman;
-   Ghost _ghosts[4];
-   Board _board;
+   std::unique_ptr<Pacman> _pacman;
+   std::unique_ptr<Board> _board;
+   std::vector<std::unique_ptr<Ghost>> _ghosts;
+
 public:
    GameEngine();
    void Init();
