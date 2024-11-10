@@ -1,12 +1,18 @@
-#include "painter.hpp"
+#include "pacman.hpp"
 #include <iostream>
 
-void Painter::DrawImage(Point topLeft, Point bottomRight, const std::vector<std::string>& image) {
-    for (const auto& line : image) {
-        std::cout << line << std::endl;
+Pacman::Pacman() : _position{0, 0}, _lives(3) {}
+
+void Pacman::Move(char direction) {
+    switch (direction) {
+        case 'w': _position.y -= 1; break;
+        case 's': _position.y += 1; break;
+        case 'a': _position.x -= 1; break;
+        case 'd': _position.x += 1; break;
     }
 }
 
-void Painter::WriteText(Point position, const std::string& text) {
-    std::cout << "Text: " << text << " at Position " << position << std::endl;
+std::ostream& operator<<(std::ostream& os, const Pacman& pacman) {
+    os << "Pacman: Position = (" << pacman._position.x << ", " << pacman._position.y << "), Lives = " << pacman._lives;
+    return os;
 }
