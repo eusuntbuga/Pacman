@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -c
+CFLAGS = -c -std=c++17
 SOURCES = board.cpp ghost.cpp pacman.cpp gameengine.cpp painter.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = PacManGame
@@ -7,10 +7,10 @@ EXECUTABLE = PacManGame
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-    $(CC) $^ -o $@
+	$(CC) $^ -o $@
 
 %.o: %.cpp
-    $(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-    rm -f $(OBJECTS) $(EXECUTABLE)
+	rm -f $(OBJECTS) $(EXECUTABLE)
