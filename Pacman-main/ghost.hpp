@@ -1,6 +1,7 @@
 #pragma once
 #include "point.hpp"
 #include <string>
+#include <iostream>
 
 class Ghost {
    Point _position;
