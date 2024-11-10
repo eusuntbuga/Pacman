@@ -12,8 +12,8 @@ class GameEngine {
 
 public:
    GameEngine();
-   void Init();
-   void Run();
-   bool CheckCollision();
-   void Display();
+   void Init();     // Inițializează jocul
+   void Run();      // Pornește jocul și bucla principală
+   bool CheckCollision();   // Verifică coliziunea dintre Pacman și fantome
+   void Display();  // Afișează starea curentă a jocului
 };
