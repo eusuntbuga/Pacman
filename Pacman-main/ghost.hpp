@@ -9,13 +9,8 @@ class Ghost {
 
 public:
    Ghost(const Point& position = {0, 0}, const std::string& color = "White");
-   Ghost(const Ghost& other);
-   Ghost& operator=(const Ghost& other);
-   bool operator==(const Ghost& other) const;
-
-   Point GetPosition() const;
    void Move();
-   std::string GetColor() const;
+   Point GetPosition() const;
 
    friend std::ostream& operator<<(std::ostream& os, const Ghost& ghost);
 };
