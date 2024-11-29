@@ -1,5 +1,4 @@
 #include "pacman.hpp"
-#include <iostream>
 
 Pacman::Pacman() : _position{0, 0}, _lives(3) {}
 
@@ -10,6 +9,14 @@ void Pacman::Move(char direction) {
         case 'a': _position.x -= 1; break;
         case 'd': _position.x += 1; break;
     }
+}
+
+Point Pacman::GetPosition() const {
+    return _position;
+}
+
+void Pacman::LoseLife() {
+    if (_lives > 0) --_lives;
 }
 
 std::ostream& operator<<(std::ostream& os, const Pacman& pacman) {
