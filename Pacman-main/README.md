@@ -1,21 +1,25 @@
-PacMan Buga Mihai
+# PacMan Game
 
- Descriere
-PacMan este un proiect ce implementează un joc clasic de tip Pac-Man.
+## Descriere
+PacMan este un joc clasic implementat în limbajul C++ cu utilizarea bibliotecii SFML pentru interfața grafică. Proiectul este parte a unui laborator de programare avansată.
 
 ## Regulile Jocului
 1. Jucătorul controlează Pac-Man folosind tastele `W`, `A`, `S`, `D`.
 2. Scopul este de a colecta toate punctele din labirint.
-3. Există patru fantome care urmăresc Pac-Man.
-4. Jocul se încheie când Pac-Man pierde toate viețile sau când toate punctele sunt colectate.
+3. Fantomele urmăresc Pac-Man.
+4. Jocul se încheie dacă Pac-Man pierde toate viețile sau colectează toate punctele.
+
+ Dependențe
+- Compilator: g++
+- Biblioteci: SFML (`libsfml-graphics`, `libsfml-window`, `libsfml-system`)
 
  Construire
-Rulați `make` pentru a construi proiectul.
+1. Asigurați-vă că aveți instalate toate dependențele necesare.
+2. Rulați comanda `make` pentru a compila proiectul.
+3. Pentru a rula testele, folosiți `make test`.
 
-În baza laboratorului 3, am adăugat constructori și operatori noi în clasele existente din proiectul PacMan. 
-Am implementat:
-
-- Constructori: implicit, de copiere și cu parametri.
-- Operatori: de copiere (`=`), de comparație (`==`), de citire și afișare (`<<`, `>>`).
-
-Aceste modificări au fost aplicate în clasele `Board`, `Ghost`, `Pacman`, și `Point`, pentru a permite manipularea și afișarea obiectelor acestor clase într-un mod mai flexibil și corect.
+Structura Proiectului
+ Fișiere antet.
+ Implementarea surselor.
+ Teste pentru unități.
+ Documentație generată cu Doxygen.
