@@ -1,15 +1,21 @@
 #pragma once
 #include "point.hpp"
 
+/**
+ * @class Pacman
+ * @brief Reprezintă personajul principal, Pac-Man.
+ * 
+ * Pacman controlează poziția și mișcarea acestuia pe tabla de joc.
+ */
 class Pacman {
    Point _position;
    int _lives;
 
 public:
-   Pacman();
+   Pacman(int x = 1, int y = 1);
    void Move(char direction);
-   Point GetPosition() const;
    void LoseLife();
-
-   friend std::ostream& operator<<(std::ostream& os, const Pacman& pacman);
+   Point GetPosition() const;
+   int GetLives() const;
+   void SetPosition(int x, int y);
 };
