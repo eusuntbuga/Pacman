@@ -1,18 +1,16 @@
 #pragma once
-#include <iostream>
 
+/**
+ * @struct Point
+ * @brief Reprezintă o poziție pe tabla de joc.
+ * 
+ * Un obiect Point conține coordonatele x și y.
+ */
 struct Point {
-    int x;
-    int y;
+   int x;
+   int y;
 
-    Point(int x = 0, int y = 0) : x(x), y(y) {}
-
-    bool operator==(const Point& other) const {
-        return x == other.x && y == other.y;
-    }
-
-    friend std::ostream& operator<<(std::ostream& os, const Point& point) {
-        os << "(" << point.x << ", " << point.y << ")";
-        return os;
-    }
+   bool operator==(const Point& other) const {
+       return x == other.x && y == other.y;
+   }
 };
