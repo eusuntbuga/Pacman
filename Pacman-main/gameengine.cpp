@@ -43,4 +43,5 @@ bool GameEngine::CheckCollision() {
     return std::any_of(_ghosts.begin(), _ghosts.end(), [&](const std::unique_ptr<Ghost>& ghost) {
         return ghost->GetPosition() == pacmanPos;
     });
+
 }
