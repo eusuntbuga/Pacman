@@ -6,6 +6,12 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
+/**
+ * @class GameEngine
+ * @brief Gestionarea logicii jocului.
+ * 
+ * GameEngine controlează inițializarea, rularea și afișarea jocului.
+ */
 class GameEngine {
    std::unique_ptr<Pacman> _pacman;
    std::unique_ptr<Board> _board;
