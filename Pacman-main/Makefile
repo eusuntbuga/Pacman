@@ -1,30 +1,54 @@
-CC = g++
-CFLAGS = -c -std=c++17
-LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
+# Variabile de configurare
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -g
 
-INCLUDE = include
-SRC = src
-LIB = libs
-TEST = tests
+# Directorul cu fișierele sursă și fișierele de test
+SRC_DIR = src
+TEST_DIR = tests
+BUILD_DIR = build
 
-SOURCES = $(SRC)/board.cpp $(SRC)/ghost.cpp $(SRC)/pacman.cpp $(SRC)/gameengine.cpp $(SRC)/painter.cpp
-OBJECTS = $(SOURCES:.cpp=.o)
-EXECUTABLE = PacManGame
+# Fișierele sursă principale
+SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
+# Fișierele de test
+TEST_FILES = $(wildcard $(TEST_DIR)/*.cpp)
 
-TEST_SOURCES = $(TEST)/test_point.cpp $(TEST)/test_board.cpp $(TEST)/test_ghost.cpp
-TEST_OBJECTS = $(TEST_SOURCES:.cpp=.o)
-TEST_EXECUTABLE = TestPacMan
+# Numele executabilului
+TARGET = pacman_game
+TEST_TARGET = test_runner
 
-all: $(EXECUTABLE) $(TEST_EXECUTABLE)
+# Obiectele generate din fișierele sursă
+OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $^ -o $@ $(LDFLAGS)
+# Obiectele generate din fișierele de test
+TEST_OBJ_FILES = $(TEST_FILES:$(TEST_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
-$(TEST_EXECUTABLE): $(TEST_OBJECTS)
-	$(CC) $^ -o $@ $(LDFLAGS)
+# Regula implicită - construirea executabilului principal
+all: $(TARGET)
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -I$(INCLUDE) $< -o $@
+# Regula pentru compilarea executabilului principal
+$(TARGET): $(OBJ_FILES)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ_FILES)
 
+# Regula pentru compilarea fișierelor sursă
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Regula pentru compilarea fișierelor de test
+$(BUILD_DIR)/%.o: $(TEST_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Regula pentru construirea executabilului de test
+test: $(TEST_OBJ_FILES) $(OBJ_FILES)
+	$(CXX) $(CXXFLAGS) -o $(TEST_TARGET) $(TEST_OBJ_FILES) $(OBJ_FILES)
+	./$(TEST_TARGET)
+
+# Curățarea fișierelor generate
 clean:
-	rm -f $(OBJECTS) $(EXECUTABLE) $(TEST_OBJECTS) $(TEST_EXECUTABLE)
+	rm -rf $(BUILD_DIR) $(TARGET) $(TEST_TARGET)
+
+# Regula pentru crearea directorului build dacă nu există
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Regula de instalare a testelor
+tests: all test
