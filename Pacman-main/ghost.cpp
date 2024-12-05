@@ -20,4 +20,5 @@ Point Ghost::GetPosition() const {
 std::ostream& operator<<(std::ostream& os, const Ghost& ghost) {
     os << "Ghost: Position = (" << ghost._position.x << ", " << ghost._position.y << "), Color = " << ghost._color;
     return os;
+
 }
